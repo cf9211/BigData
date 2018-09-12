@@ -1,0 +1,119 @@
+
+
+Statements:
+===========
+1. select			: eg. SELECT column1, column2, ...FROM table_name;
+2. select distinct  : eg. SELECT DISTINCT column1, column2, ...FROM table_name;
+3.  INSERT INTO 	: eg. INSERT INTO table_name (column1, column2, column3, ...) VALUES (value1, value2, value3, ...);
+						  INSERT INTO table_name VALUES (value1, value2, value3, ...);
+4. UPDATE			: eg. UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition;
+5. DELETE			: eg. DELETE FROM table_name WHERE condition;
+6. GROUP BY : GROUP BY statement is often used with aggregate functions (COUNT, MAX, MIN, SUM, AVG) to group the 
+				result-set by one or more columns.
+				ex. SELECT column_name(s)
+					FROM table_name
+					WHERE condition
+					GROUP BY column_name(s)
+					ORDER BY column_name(s);
+					
+7. SELECT INTO: The SELECT INTO statement copies data from one table into a new table in another database.
+				ex. SELECT * INTO newtable [IN externaldb] FROM oldtable WHERE condition;
+				
+8. INSERT INTO SELECT : INSERT INTO SELECT statement copies data from one table and inserts it into another table.
+
+Clauses:
+=========
+1. WHERE  : SELECT column1, column2, ...FROM table_name WHERE condition;
+	operators in where clause:
+			Operator	Description
+		=	Equal
+		<>	Not equal. Note: In some versions of SQL this operator may be written as !=
+		>	Greater than
+		<	Less than
+		>=	Greater than or equal
+		<=	Less than or equal
+		BETWEEN	Between an inclusive range
+		LIKE	Search for a pattern
+		IN	To specify multiple possible values for a column
+		
+2. SELECT TOP  : eg. SELECT column_name(s) FROM table_name WHERE ROWNUM <= number;
+
+3. JOIN  : ex. SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate FROM Orders INNER JOIN Customers ON 
+			Orders.CustomerID=Customers.CustomerID;
+4. HAVING :  HAVING clause was added to SQL because the WHERE keyword could not be used with aggregate functions.
+
+			SELECT column_name(s)
+			FROM table_name
+			WHERE condition
+			GROUP BY column_name(s)
+			HAVING condition
+			ORDER BY column_name(s);
+			
+			ex. SELECT COUNT(CustomerID), Country
+				FROM Customers
+				GROUP BY Country
+				HAVING COUNT(CustomerID) > 5;
+						
+		
+
+Operators:
+==========
+1. AND :Ex.  SELECT column1, column2, ... FROM table_name WHERE condition1 AND condition2 AND condition3 ...;
+2. OR
+3. NOT
+4. LIKE : Two wildcards in LIKE
+			%   The percent sign represents zero, one, or multiple characters
+			_   The underscore represents a single characte
+			
+			ex. SELECT column1, column2, ... FROM table_name WHERE columnN LIKE pattern;
+			
+5. IN :  allows you to specify multiple values in a WHERE clause.
+		 eg. SELECT column_name(s) FROM table_name WHERE column_name IN (value1, value2, ...);
+		 
+6.  BETWEEN : ex. SELECT column_name(s) FROM table_name WHERE column_name BETWEEN value1 AND value2;
+7. UNION : selects all the different cities (only distinct values) 
+			ex. SELECT column_name(s) FROM table1 UNION SELECT column_name(s) FROM table2;
+8. UNION ALL : selects all cities (duplicate values also)
+9. EXISTS : SELECT column_name(s)
+			FROM table_name
+			WHERE EXISTS
+			(SELECT column_name FROM table_name WHERE condition);
+10. ANY and ALL:  The ANY and ALL operators are used with a WHERE or HAVING clause.
+					The ANY operator returns true if any of the subquery values meet the condition.
+					The ALL operator returns true if all of the subquery values meet the condition.
+					
+					SELECT column_name(s)
+					FROM table_name
+					WHERE column_name operator ANY
+					(SELECT column_name FROM table_name WHERE condition);
+
+
+Keyword:
+========
+1. ORDER BY  : Ex. SELECT column1, column2, ...ORDER BY column1, column2, ... ASC|DESC;
+
+
+Values:
+========
+
+1. NULL	: It is not possible to test for NULL values with comparison operators, such as =, <, or <>.
+		  We will have to use the IS NULL and IS NOT NULL operators instead.
+		  
+		  
+		  
+Functions:
+===========
+1. min() : SELECT MIN(column_name) FROM table_name WHERE condition;
+2.max()  
+3. COUNT(), AVG() and SUM() : ex. SELECT COUNT/AVG/SUM(column_name) FROM table_name WHERE condition;
+4. IFNULL(), COALESCE()--> MYSQL  ISNULL()-->SQL Server , and NVL()-->Oracle
+
+
+
+Alias for Columns :
+====================
+ex. SELECT CustomerName, Address + ', ' + PostalCode + ' ' + City + ', ' + Country AS Address FROM Customers;
+
+
+Comments: /* */ 
+========
